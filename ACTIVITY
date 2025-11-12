@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textviewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LOGIN FORM"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USERNAME"/>
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Enter username"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PASSWORD"
+        android:layout_marginTop="16dp"/>
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Enter password"
+        android:inputType="textPassword"/>
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_marginTop="24dp"/>
+</LinearLayout>
+
+
+................................................................................................
+
+package com.example.loginfrom;
+
+import android.widget.Toast;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+    private static final String VALID_USERNAME = "user";
+    private static final String VALID_PASSWORD = "password";
+    private EditText usernameEditText;
+    private EditText passwordEditText;
+    private Button loginButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        usernameEditText = findViewById(R.id.usernameEditText);
+        passwordEditText = findViewById(R.id.passwordEditText);
+        loginButton = findViewById(R.id.loginButton);
+
+        loginButton.setOnClickListener(v -> {
+            String enteredUsername = usernameEditText.getText().toString().trim();
+            String enteredPassword = passwordEditText.getText().toString().trim();
+
+            if (VALID_USERNAME.equals(enteredUsername) && VALID_PASSWORD.equals(enteredPassword)) {
+                Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+            }
+        });};
+    }
+
+
+
